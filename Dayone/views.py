@@ -7,13 +7,13 @@ import os
 from django.conf import settings
 import plistlib
 import utils
-from models_mongo import coll_entry, create_indexs
+import models_mongo as db
 import pymongo
 
 
 def init_dayone_entries(request):
-    create_indexs()
-    coll_entry.remove({})
+    # todo replace
+    db.init_db()
     for f in glob.glob(os.path.join(settings.DAYONE_PATH, 'entries', '*.doentry')):
         # print f
         pl = plistlib.readPlist(f)
@@ -25,7 +25,7 @@ def init_dayone_entries(request):
             tags = pl['Tags']
             # print tags
         # print uuid, create_date
-        coll_entry.insert_one({
+        db.save_entry({
             'uuid': uuid,
             'date': create_date,
             'text': text,
@@ -41,7 +41,7 @@ def photo(request, uuid):
 
 
 def all_entries(request):
-    return render_to_response('entry_list.html', {'entries': coll_entry.find().sort('date', pymongo.DESCENDING)})
+    return render_to_response('entry_list.html', {'entries': db.get_entry()})
 
 
 def all_tags(request):
@@ -50,8 +50,16 @@ def all_tags(request):
 
 def search(request):
     text = request.GET.get('text', '')
-    p = coll_entry.find({'text': {'$regex': text}})
-    return render_to_response('entry_list.html', {'entries': p.sort('date', pymongo.DESCENDING)})
+    p = db.search_entries(text)
+    return render_to_response('entry_list.html', {'entries': p})
+
+
+def howto(request):
+    return render_to_response('howto.html')
+
+
+def all_days(request):
+    return render_to_response('days.html', {'days': db.get_days()})
 
 
 def index(request):

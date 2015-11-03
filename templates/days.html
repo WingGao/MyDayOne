@@ -1,0 +1,27 @@
+{% extends "base.html" %}
+{% block page_title %}Days{% endblock %}
+{% load filter %}
+{% block content %}
+
+    <table class="mdl-data-table mdl-shadow--2dp">
+        <thead>
+        <tr>
+            <th class="mdl-data-table__cell--non-numeric">Day</th>
+            <th>Event</th>
+            <th>Kind</th>
+            <th>During</th>
+        </tr>
+        </thead>
+        <tbody>
+        {% for day in days %}
+            <tr>
+                <td class="mdl-data-table__cell--non-numeric">{{ day.date|date:'Y-m-d' }}</td>
+                <td>{{ day.name }}</td>
+                <td>{{ day.type|tag_day_type }}</td>
+                <td>{{ day.date|daysince }}</td>
+            </tr>
+        {% endfor %}
+        </tbody>
+    </table>
+
+{% endblock %}

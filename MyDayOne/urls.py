@@ -23,4 +23,6 @@ urlpatterns = [
     url(r'^entry/search', 'Dayone.views.search'),
     url(r'^photo/([0-9A-Z]{32})$', 'Dayone.views.photo'),
     url(r'^tag/all', 'Dayone.views.all_tags'),
+    url(r'^day/all', 'Dayone.views.all_days'),
+    url(r'^howto', 'Dayone.views.howto'),
 ]
