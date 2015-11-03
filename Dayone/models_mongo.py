@@ -1,12 +1,17 @@
 # coding=utf-8
 __author__ = 'wing'
 from pymongo import MongoClient, TEXT
+from bson.codec_options import CodecOptions
+from django.conf import settings
+import pytz
 
-client = MongoClient('localhost')
+client = MongoClient(settings.MONGODB_URL)
 
 db = client['dayone']
 
-coll_entry = db['coll_entry']
+coll_entry = db['coll_entry'].with_options(codec_options=CodecOptions(
+    tz_aware=True,
+    tzinfo=pytz.timezone(settings.TIME_ZONE)))
 
 
 def create_indexs():

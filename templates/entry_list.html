@@ -5,16 +5,29 @@
         {#        <div>{{ entry.text }}</div>#}
         {#        <div>{{ entry.date }}</div>#}
 
-        <div class="dayone-entry-card mdl-card mdl-shadow--2dp">
-            <div class="mdl-card__supporting-text mdl-color-text--grey-600">
-                {{ entry.text }}
+        <div class="dayone-entry-card mdl-card mdl-shadow--2dp mdl-grid">
+            <div class="dayone-date mdl-cell mdl-cell--1-col mdl-color-text--grey-400">
+                <div>{{ entry.date|date:'H:i' }}</div>
+                <div class="dayone-day">{{ entry.date|date:'d' }}</div>
+                <div>{{ entry.date.month }}月</div>
+                <div>{{ entry.date.year }}年</div>
             </div>
-            <div class="dayone-tag mdl-card__actions">
-                {% for tag in entry.tags %}
-                    <a class="mdl-button mdl-button--colored mdl-js-button mdl-js-ripple-effect">
-                        {{ tag }}
-                    </a>
-                {% endfor %}
+            {% if entry.image %}
+                <div class="dayone-entry-img mdl-cell mdl-cell--2-col"
+                     style="background-image:url(/photo/{{ entry.uuid }})">
+                </div>
+            {% endif %}
+            <div class="mdl-cell mdl-cell--8-col">
+                <div class="mdl-card__supporting-text mdl-color-text--grey-600 ">
+                    {{ entry.text }}
+                </div>
+                <div class="dayone-tag mdl-card__actions">
+                    {% for tag in entry.tags %}
+                        <a class="mdl-button mdl-button--colored mdl-js-button mdl-js-ripple-effect">
+                            {{ tag }}
+                        </a>
+                    {% endfor %}
+                </div>
             </div>
         </div>
     {% endfor %}

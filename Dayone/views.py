@@ -1,19 +1,21 @@
 # coding=utf-8
 from django.shortcuts import render_to_response
 from django.http import HttpResponse
+from django.views import static
 import glob
 import os
 from django.conf import settings
 import plistlib
 import utils
-from models_mongo import coll_entry
+from models_mongo import coll_entry, create_indexs
 import pymongo
 
 
 def init_dayone_entries(request):
+    create_indexs()
     coll_entry.remove({})
     for f in glob.glob(os.path.join(settings.DAYONE_PATH, 'entries', '*.doentry')):
-        print f
+        # print f
         pl = plistlib.readPlist(f)
         create_date = utils.get_entry_date(pl['Creation Date'], pl['Time Zone'])
         uuid = pl['UUID']
@@ -21,8 +23,8 @@ def init_dayone_entries(request):
         tags = []
         if hasattr(pl, 'Tags'):
             tags = pl['Tags']
-            print tags
-        print uuid, create_date
+            # print tags
+        # print uuid, create_date
         coll_entry.insert_one({
             'uuid': uuid,
             'date': create_date,
@@ -30,8 +32,12 @@ def init_dayone_entries(request):
             'image': os.path.exists(os.path.join(settings.DAYONE_PATH, 'photos', uuid + '.jpg')),
             'tags': tags
         })
-        # todo update
     return HttpResponse('init success')
+
+
+def photo(request, uuid):
+    fname = uuid + '.jpg'
+    return static.serve(request, fname, os.path.join(settings.DAYONE_PATH, 'photos'), False)
 
 
 def all_entries(request):

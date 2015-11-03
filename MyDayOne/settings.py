@@ -87,7 +87,7 @@ DATABASES = {
 
 LANGUAGE_CODE = 'en-us'
 
-TIME_ZONE = 'UTC'
+TIME_ZONE = 'Asia/Shanghai'
 
 USE_I18N = True
 
@@ -105,3 +105,4 @@ STATICFILES_DIRS = (
 )
 
 DAYONE_PATH = '/Users/wing/Dropbox/Apps/Day One/Journal.dayone'
+MONGODB_URL = 'localhost'
