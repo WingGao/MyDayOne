@@ -2,18 +2,22 @@
 __author__ = 'wing'
 from pymongo import *
 from bson.codec_options import CodecOptions
+from bson.dbref import DBRef
 from django.conf import settings
 import pytz
 
 client = MongoClient(settings.MONGODB_URL)
 
 db = client['dayone']
-
-coll_entry = db['entry'].with_options(codec_options=CodecOptions(
+ENTRY_COLL_NAME = 'entry'
+DAY_COLL_NAME = 'day'
+TAG_COLL_NAME = 'tag'
+coll_entry = db[ENTRY_COLL_NAME].with_options(codec_options=CodecOptions(
     tz_aware=True,
     tzinfo=pytz.timezone(settings.TIME_ZONE)))
 
-coll_day = db['day']
+coll_day = db[DAY_COLL_NAME]
+coll_tag = db[TAG_COLL_NAME]
 
 TAG_DAY = ['D', 'Dl']
 
@@ -24,20 +28,15 @@ TAG_DAY_CN = {
 
 
 def init_db():
-    if 'entry' not in db.collection_names():
-        db.create_collection('entry')
-    else:
-        coll_entry.drop()
-    if 'day' not in db.collection_names():
-        db.create_collection('day')
-    else:
-        coll_day.drop()
+    for i in [ENTRY_COLL_NAME, DAY_COLL_NAME, TAG_COLL_NAME]:
+        if i not in db.collection_names():
+            db.create_collection(i)
+        else:
+            db[i].remove()
     _create_indexs()
 
 
 def _create_indexs():
-    if 'entry' not in db.collection_names():
-        db.create_collection('entry')
     indexs = {
         '_text': [('text', TEXT)],
         'unq_uuid': 'uuid',
@@ -49,8 +48,16 @@ def _create_indexs():
             coll_entry.create_index(v, name=k, unique=k.startswith('unq_'))
 
 
-def get_entry():
-    return coll_entry.find().sort('date', DESCENDING)
+def get_entry(uuid=None):
+    if uuid is not None:
+        c = coll_entry.find({'uuid': uuid})
+    else:
+        c = coll_entry.find({})
+    return c.sort('date', DESCENDING)
+
+
+def get_entry_by_tag(tag):
+    return [db.dereference(i) for i in coll_tag.find_one({'name': tag})['entries']]
 
 
 def search_entries(p):
@@ -72,13 +79,27 @@ def _parse_tags(entry):
                 'date': entry['date'],
                 'name': t[1],
                 'type': t[0],
-                'entry_id': entry['_id']
+                'uuid': entry['uuid']
             })
             print t[0], t[1]
+        else:
+            tag = coll_tag.find_one({'name': i})
+            if tag is None:
+                coll_tag.insert_one({
+                    'name': i,
+                    'entries': [DBRef(ENTRY_COLL_NAME, entry['_id'])]
+                })
+            else:
+                coll_tag.update_one({'_id': tag['_id']},
+                                    {'$push': {'entries': DBRef(ENTRY_COLL_NAME, entry['_id'])}})
 
 
 def get_days():
     return coll_day.find({}).sort('date', DESCENDING)
+
+
+def get_tags():
+    return coll_tag.find({})
 
 
 if __name__ == '__main__':

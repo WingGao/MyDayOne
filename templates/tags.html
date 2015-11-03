@@ -12,8 +12,10 @@
         <tbody>
         {% for tag in tags %}
             <tr>
-                <td class="mdl-data-table__cell--non-numeric">Acrylic (Transparent)</td>
-                <td>25</td>
+                <td class="mdl-data-table__cell--non-numeric">
+                    <a href="/tag/{{ tag.name }}">{{ tag.name }}</a>
+                </td>
+                <td>{{ tag.entries|length }}</td>
             </tr>
         {% endfor %}
         </tbody>

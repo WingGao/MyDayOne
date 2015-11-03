@@ -40,12 +40,20 @@ def photo(request, uuid):
     return static.serve(request, fname, os.path.join(settings.DAYONE_PATH, 'photos'), False)
 
 
+def entry(request, uuid):
+    return render_to_response('entry_list.html', {'entries': db.get_entry(uuid)})
+
+
 def all_entries(request):
     return render_to_response('entry_list.html', {'entries': db.get_entry()})
 
 
 def all_tags(request):
-    return render_to_response('tags.html', {'tags': [1, 2, 3]})
+    return render_to_response('tags.html', {'tags': db.get_tags()})
+
+
+def one_tag(request, tag):
+    return render_to_response('entry_list.html', {'entries': db.get_entry_by_tag(tag)})
 
 
 def search(request):

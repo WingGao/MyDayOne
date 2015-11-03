@@ -73,3 +73,9 @@
     line-height: 45px;
     color: #000;
 }
+
+#entry_div #entry_spinner {
+    margin: 30%;
+    width: 100px;
+    height: 100px;
+}

@@ -3,7 +3,7 @@
 {% load filter %}
 {% block content %}
 
-    <table class="mdl-data-table mdl-shadow--2dp">
+    <table class="mdl-data-table mdl-shadow--2dp mdl-cell mdl-cell--4-col">
         <thead>
         <tr>
             <th class="mdl-data-table__cell--non-numeric">Day</th>
@@ -14,14 +14,18 @@
         </thead>
         <tbody>
         {% for day in days %}
-            <tr>
+            <tr onclick="load_entry('123')">
                 <td class="mdl-data-table__cell--non-numeric">{{ day.date|date:'Y-m-d' }}</td>
-                <td>{{ day.name }}</td>
+                <td><a href="/entry/{{ day.uuid }}">{{ day.name }}</a></td>
                 <td>{{ day.type|tag_day_type }}</td>
                 <td>{{ day.date|daysince }}</td>
             </tr>
         {% endfor %}
         </tbody>
     </table>
+    <div class="mdl-cell mdl-cell--8-col" id="entry_div">
+        <div id="entry_spinner" class="mdl-spinner mdl-js-spinner is-active">
 
+        </div>
+    </div>
 {% endblock %}
