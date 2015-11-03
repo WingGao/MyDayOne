@@ -1,0 +1,60 @@
+@font-face {
+    font-family: 'Material Icons';
+    font-style: normal;
+    font-weight: 400;
+    src: local('Material Icons'), local('MaterialIcons-Regular'), url(/static/2fcrYFNaTjcS6g4U3t-Y5UEw0lE80llgEseQY3FEmqw.woff2) format('woff2');
+}
+
+.material-icons {
+    font-family: 'Material Icons';
+    font-weight: normal;
+    font-style: normal;
+    font-size: 24px;
+    line-height: 1;
+    letter-spacing: normal;
+    text-transform: none;
+    display: inline-block;
+    white-space: nowrap;
+    word-wrap: normal;
+    direction: ltr;
+    -webkit-font-feature-settings: 'liga';
+    -webkit-font-smoothing: antialiased;
+}
+
+.dayone-layout .dayone-header .mdl-textfield {
+    padding-top: 27px;
+}
+.dayone-layout .mdl-layout__header .mdl-layout__drawer-button {
+    color: rgba(0, 0, 0, 0.54);
+}
+
+.dayone-layout .dayone-navigation .mdl-navigation__link {
+    display: flex !important;
+    flex-direction: row;
+    align-items: center;
+    color: rgba(255, 255, 255, 0.56);
+    font-weight: 500;
+}
+.dayone-layout .dayone-navigation .mdl-navigation__link:hover {
+    background-color: #00BCD4;
+    color: #37474F;
+}
+.dayone-navigation {
+    flex-grow: 1;
+}
+.dayone-navigation .mdl-navigation__link .material-icons {
+    font-size: 24px;
+    color: rgba(255, 255, 255, 0.56);
+    margin-right: 32px;
+}
+
+.dayone-entry-card.mdl-card {
+    width: 100%;
+    min-height: 50px;
+}
+
+.dayone-tag .mdl-button {
+    height: 20px;
+    line-height: 20px;
+    min-width: 20px;
+}

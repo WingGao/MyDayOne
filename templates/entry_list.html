@@ -1,0 +1,21 @@
+{% extends "base.html" %}
+{% block page_title %}Entry List{% endblock %}
+{% block content %}
+    {% for entry in entries %}
+        {#        <div>{{ entry.text }}</div>#}
+        {#        <div>{{ entry.date }}</div>#}
+
+        <div class="dayone-entry-card mdl-card mdl-shadow--2dp">
+            <div class="mdl-card__supporting-text mdl-color-text--grey-600">
+                {{ entry.text }}
+            </div>
+            <div class="dayone-tag mdl-card__actions">
+                {% for tag in entry.tags %}
+                    <a class="mdl-button mdl-button--colored mdl-js-button mdl-js-ripple-effect">
+                        {{ tag }}
+                    </a>
+                {% endfor %}
+            </div>
+        </div>
+    {% endfor %}
+{% endblock %}
