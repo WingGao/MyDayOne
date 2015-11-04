@@ -6,9 +6,11 @@
         {#        <div>{{ entry.text }}</div>#}
         {#        <div>{{ entry.date }}</div>#}
 
-        <div class="dayone-entry-card mdl-card mdl-shadow--2dp mdl-grid">
-            <div class="dayone-date mdl-cell mdl-cell--1-col mdl-color-text--grey-400">
+        <div class="dayone-entry-card mdl-card mdl-shadow--2dp mdl-grid" onclick="load_entry_modal(this)">
+            <div class="dayone-date mdl-cell mdl-cell--1-col mdl-color-text--grey-400"
+                 dayone-date="{{ entry.date|date:'Y年m月d日 l H:i' }}">
                 <div>{{ entry.date|date:'H:i' }}</div>
+                <div>{{ entry.date.weekday|cnweek }}</div>
                 <div class="dayone-day">{{ entry.date|date:'d' }}</div>
                 <div>{{ entry.date.month }}月</div>
                 <div>{{ entry.date.year }}年</div>
@@ -24,7 +26,7 @@
                 </div>
                 <div class="dayone-tag mdl-card__actions">
                     {% for tag in entry.tags %}
-                        <a class="mdl-button mdl-button--colored mdl-js-button mdl-js-ripple-effect"
+                        <a class="mdl-button mdl-js-button mdl-js-ripple-effect mdl-button--raised mdl-button--accent"
                            href="{{ tag|tagurl }}">
                             {{ tag }}
                         </a>
@@ -33,4 +35,17 @@
             </div>
         </div>
     {% endfor %}
+{% endblock %}
+{% block modal %}
+    <div class="modal-header">
+        <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+        <h4 class="modal-title">Modal title</h4>
+    </div>
+    <div class="modal-body">
+        <img class="entry_img" src="/photo/3A8C5B6A5D9444CFAE0A26E6B6A244F2">
+        <div class="dayone-entry-text"></div>
+    </div>
+    <div class="modal-footer">
+        <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+    </div>
 {% endblock %}

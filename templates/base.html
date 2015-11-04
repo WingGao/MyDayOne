@@ -6,6 +6,8 @@
     <script src="/static/jquery-2.1.4.min.js"></script>
     <link rel="stylesheet" href="/static/material.min.css">
     <script src="/static/material.min.js"></script>
+    <link rel="stylesheet" href="/static/bootstrap.min.css">
+    <script src="/static/bootstrap.min.js"></script>
     <link rel="stylesheet" href="/static/style.css">
     <script src="/static/main.js"></script>
 </head>
@@ -63,5 +65,13 @@
         </div>
     </main>
 </div>
+<div id="dayone-modal" class="modal fade">
+    <div class="modal-dialog">
+        <div class="modal-content">
+            {% block modal %}{% endblock %}
+        </div><!-- /.modal-content -->
+    </div><!-- /.modal-dialog -->
+</div><!-- /.modal -->
+
 </body>
 </html>

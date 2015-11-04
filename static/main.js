@@ -22,6 +22,18 @@ function load_entry(uuid) {
         })
 }
 
+function load_entry_modal(dayonecard) {
+    var card = $(dayonecard);
+    var modal = $('#dayone-modal');
+    modal.modal('show');
+    //modal.find('.entry_img').attr('src',card.find())
+    var img = card.find('.dayone-entry-img').css('background-image');
+    modal.find('.modal-title').text(card.find('.dayone-date').attr('dayone-date'));
+    modal.find('.entry_img').attr('src', img == undefined ? '' : img.substring(5, img.length - 2));
+    modal.find('.dayone-entry-text').html(card.find('.mdl-card__supporting-text').html());
+
+}
+
 function nl2br(str, is_xhtml) {
     var breakTag = (is_xhtml || typeof is_xhtml === 'undefined') ? '<br ' + '/>' : '<br>';
 

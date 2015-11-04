@@ -74,6 +74,7 @@
     line-height: 20px;
     min-width: 20px;
 }
+
 .dayone-tag {
     padding: 10px 0 0 8px;
 }
@@ -115,8 +116,11 @@
 #entry_div #entry_text {
 }
 
-#entry_div #entry_img {
+#entry_div #entry_img, #dayone-modal .entry_img {
     max-width: 98%;
     max-height: 50%;
     margin-bottom: 30px;
+}
+#dayone-modal .entry_img {
+    max-height: 500px;
 }
