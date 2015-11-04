@@ -24,6 +24,7 @@
 .dayone-layout .dayone-header .mdl-textfield {
     padding-top: 27px;
 }
+
 .dayone-layout .mdl-layout__header .mdl-layout__drawer-button {
     color: rgba(0, 0, 0, 0.54);
 }
@@ -35,13 +36,16 @@
     color: rgba(255, 255, 255, 0.56);
     font-weight: 500;
 }
+
 .dayone-layout .dayone-navigation .mdl-navigation__link:hover {
     background-color: #00BCD4;
     color: #37474F;
 }
+
 .dayone-navigation {
     flex-grow: 1;
 }
+
 .dayone-navigation .mdl-navigation__link .material-icons {
     font-size: 24px;
     color: rgba(255, 255, 255, 0.56);
@@ -52,30 +56,67 @@
     width: 100%;
     min-height: 50px;
 }
+
 .dayone-entry-card .dayone-entry-img {
     height: 150px;
     width: 150px;
     background-repeat: no-repeat;
     background-size: cover;
 }
+
 .dayone-entry-card .mdl-card__supporting-text {
-    max-height: 100px;
+    max-height: 90px;
+    font-size: 16px;
 }
+
 .dayone-tag .mdl-button {
     height: 20px;
     line-height: 20px;
     min-width: 20px;
 }
+.dayone-tag {
+    padding: 10px 0 0 8px;
+}
+
 .dayone-date {
 }
+
 .dayone-date .dayone-day {
     font-size: 45px;
     line-height: 45px;
     color: #000;
 }
 
+.dayone-entry-text {
+    font-size: 20px;
+}
+
+#page-days {
+    height: 100%;
+}
+
+#page-days .page-content {
+    height: 90%;
+    /*overflow-y: auto;*/
+}
+
+#entry_div {
+    height: 100%;
+    overflow-y: scroll;
+    padding: 20px;
+}
+
 #entry_div #entry_spinner {
     margin: 30%;
     width: 100px;
     height: 100px;
+}
+
+#entry_div #entry_text {
+}
+
+#entry_div #entry_img {
+    max-width: 98%;
+    max-height: 50%;
+    margin-bottom: 30px;
 }

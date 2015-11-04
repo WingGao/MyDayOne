@@ -1,4 +1,5 @@
 {% extends "base.html" %}
+{% block page_id %}days{% endblock %}
 {% block page_title %}Days{% endblock %}
 {% load filter %}
 {% block content %}
@@ -14,7 +15,7 @@
         </thead>
         <tbody>
         {% for day in days %}
-            <tr onclick="load_entry('123')">
+            <tr onclick="load_entry('{{ day.uuid }}')">
                 <td class="mdl-data-table__cell--non-numeric">{{ day.date|date:'Y-m-d' }}</td>
                 <td><a href="/entry/{{ day.uuid }}">{{ day.name }}</a></td>
                 <td>{{ day.type|tag_day_type }}</td>
@@ -23,9 +24,41 @@
         {% endfor %}
         </tbody>
     </table>
-    <div class="mdl-cell mdl-cell--8-col" id="entry_div">
-        <div id="entry_spinner" class="mdl-spinner mdl-js-spinner is-active">
+    <div class="mdl-cell mdl-cell--8-col mdl-shadow--2dp  mdl-color--grey-100" id="entry_div">
+        <div id="entry_spinner" class="mdl-spinner mdl-js-spinner is-active" style="display: none">
 
+        </div>
+        <img id="entry_img" src="/photo/3A8C5B6A5D9444CFAE0A26E6B6A244F2">
+        <div id="entry_text" class="dayone-entry-text">
+            宁波一位媒体人：我最先称他们“涨停板敢死队”<br>
+
+            “ 宁波涨停板敢死队 这一说，起源于2003年。当时是我关注到这一现象，并且采访了这批人，并取名 宁波涨停板敢死队 。”宁波一位资深媒体人向记者表示。
+
+            <br>“2003年的证券市场沪指只有1400多点，还处于熊市中，有三人驻扎在银河证券解放南路营业部4楼贵宾室，他们手中有三四千万元的资金。2003年正值熊市，营业部绝大部分成交量都来自他们。他们操作凶悍，每天都直接去追涨停板，然后把涨停板封住，第二天趁高开出货。”
+
+            <br>该媒体人还表示，当时也算不上正式采访，只是和这批人聊了聊，然后就写了报道，没想到此文一出以后又被全国媒体转载，引起了关注。
+
+            <br>2003年新年，《中国证券报》在头版刊发《涨停板敢死队》一文，首次披露了银河证券宁波解放南路营业部存在“涨停板敢死队”的情况。报道中称，有四五个客户，操作思路一致，总量资金一个多亿，一年交易金额50多个亿，占到营业部交易额的60%以上。
+
+            <br>文章见报后，当时的证监会宁波特派办马上组织专人对营业部是否涉嫌违规进行专项调查。一个星期后，特派办又召集宁波市区6家证券营业部总经理进行专题座谈。此后一段时间，“敢死队”一度沉寂，直到特派办认定“敢死队”没有违规，才重新露面。
+<br>
+            <br>据当年报道的统计，从2003年1月2日开市至2月14日，共26个交易日，在沪深交易所公开披露的信息公告涨幅榜中，“敢死队”共有11天18次榜上有名，操作股票17只，榜上封涨停资金累计达1.5亿元。
+<br>
+            <br>经历过几次漂亮的战役后，“涨停板敢死队”威名远播，在江湖上更是有“炒股不跟解放南，便是神仙也枉然”的美誉。
+<br>
+            <br>不过，在种种压力之下，“敢死队”队员纷纷出走。从2005年入秋起，几乎销声匿迹。有报道曾指出，名气渐响后，“敢死队”一举一动开始为外界所注意，特别是其在营业部的仓位、持股等情况很容易被泄露，更有人专门分析他们的持股以跟风投资。
+<br>
+            <br>不愿被过多关注和打扰，也许是“敢死队”成员最终决定隐退江湖的真正原因。
+<br>
+            <br>2005年之后，徐翔等人陆续来到上海发展。其他成员随后分散到光大证券宁波解放南路等几家营业部。
+<br>
+            <br>[ 低调的超级客户 ]
+<br>
+            <br>券商人士：徐翔一个人顶整个营业部
+<br>
+            <br>经历过此事以后，徐翔及其涨停板敢死队的成员对记者敬而远之，甚至连证券公司内的任何成员都回避。
+<br>
+            <br>张超（化名）是光大证券宁波解放南路营业部的一名老员工。
         </div>
     </div>
 {% endblock %}

@@ -1,4 +1,5 @@
 {% extends "base.html" %}
+{% load filter %}
 {% block page_title %}Entry List{% endblock %}
 {% block content %}
     {% for entry in entries %}
@@ -18,12 +19,13 @@
                 </div>
             {% endif %}
             <div class="mdl-cell mdl-cell--8-col">
-                <div class="mdl-card__supporting-text mdl-color-text--grey-600 ">
-                    {{ entry.text }}
+                <div class="mdl-card__supporting-text mdl-color-text--grey-600">
+                    {{ entry.text|linebreaksbr }}
                 </div>
                 <div class="dayone-tag mdl-card__actions">
                     {% for tag in entry.tags %}
-                        <a class="mdl-button mdl-button--colored mdl-js-button mdl-js-ripple-effect">
+                        <a class="mdl-button mdl-button--colored mdl-js-button mdl-js-ripple-effect"
+                           href="{{ tag|tagurl }}">
                             {{ tag }}
                         </a>
                     {% endfor %}

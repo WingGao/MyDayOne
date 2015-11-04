@@ -1,6 +1,7 @@
 # coding=utf-8
 from django.shortcuts import render_to_response
 from django.http import HttpResponse
+from http import JSONResponse
 from django.views import static
 import glob
 import os
@@ -8,7 +9,6 @@ from django.conf import settings
 import plistlib
 import utils
 import models_mongo as db
-import pymongo
 
 
 def init_dayone_entries(request):
@@ -41,7 +41,12 @@ def photo(request, uuid):
 
 
 def entry(request, uuid):
-    return render_to_response('entry_list.html', {'entries': db.get_entry(uuid)})
+    r_format = request.GET.get('format', 'html')
+    ent = db.get_entry(uuid)
+    if r_format == 'json':
+        return JSONResponse(db.dumps(ent[0]))
+    else:
+        return render_to_response('entry_list.html', {'entries': db.get_entry(uuid)})
 
 
 def all_entries(request):

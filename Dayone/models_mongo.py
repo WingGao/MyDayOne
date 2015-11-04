@@ -3,6 +3,7 @@ __author__ = 'wing'
 from pymongo import *
 from bson.codec_options import CodecOptions
 from bson.dbref import DBRef
+import bson.json_util
 from django.conf import settings
 import pytz
 
@@ -100,6 +101,10 @@ def get_days():
 
 def get_tags():
     return coll_tag.find({})
+
+
+def dumps(d):
+    return bson.json_util.dumps(d)
 
 
 if __name__ == '__main__':

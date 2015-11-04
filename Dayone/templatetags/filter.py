@@ -1,7 +1,8 @@
 __author__ = 'wing'
 from django import template
-from Dayone.models_mongo import TAG_DAY_CN
+from Dayone.models_mongo import TAG_DAY_CN, TAG_DAY
 import datetime
+
 register = template.Library()
 
 
@@ -9,6 +10,16 @@ register = template.Library()
 def tag_day_type(daytype):
     return TAG_DAY_CN[daytype]
 
+
 @register.filter
 def daysince(date):
     return (datetime.datetime.now() - date).days
+
+
+@register.filter
+def tagurl(tname):
+    t = tname.split('-', 1)
+    if len(t) == 2 and t[0] in TAG_DAY:
+        return '/day/all'
+    else:
+        return '/tag/' + tname
