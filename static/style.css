@@ -88,7 +88,7 @@
     color: #000;
 }
 
-.dayone-entry-text {
+.dayone-entry-text, .dayone-entry-text p {
     font-size: 20px;
 }
 
@@ -121,6 +121,8 @@
     max-height: 50%;
     margin-bottom: 30px;
 }
+
 #dayone-modal .entry_img {
     max-height: 500px;
 }
+

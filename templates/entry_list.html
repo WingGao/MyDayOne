@@ -22,7 +22,7 @@
             {% endif %}
             <div class="mdl-cell mdl-cell--8-col">
                 <div class="mdl-card__supporting-text mdl-color-text--grey-600">
-                    {{ entry.text|linebreaksbr }}
+                    {{ entry.text }}
                 </div>
                 <div class="dayone-tag mdl-card__actions">
                     {% for tag in entry.tags %}
@@ -43,7 +43,7 @@
     </div>
     <div class="modal-body">
         <img class="entry_img" src="/photo/3A8C5B6A5D9444CFAE0A26E6B6A244F2">
-        <div class="dayone-entry-text"></div>
+        <div class="dayone-entry-text dayone-markdown"></div>
     </div>
     <div class="modal-footer">
         <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>

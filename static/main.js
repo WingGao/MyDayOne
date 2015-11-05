@@ -5,7 +5,7 @@ function load_entry(uuid) {
     $('#entry_spinner').show();
     var success = function (d) {
         $('#entry_spinner').hide();
-        $('#entry_text').html(nl2br(d.text));
+        $('#entry_text').html(marked(d.text));
         if (d.image) {
             $('#entry_img').attr('src', '/photo/' + d.uuid);
         } else {
@@ -30,7 +30,7 @@ function load_entry_modal(dayonecard) {
     var img = card.find('.dayone-entry-img').css('background-image');
     modal.find('.modal-title').text(card.find('.dayone-date').attr('dayone-date'));
     modal.find('.entry_img').attr('src', img == undefined ? '' : img.substring(5, img.length - 2));
-    modal.find('.dayone-entry-text').html(card.find('.mdl-card__supporting-text').html());
+    modal.find('.dayone-entry-text').html(marked(card.find('.mdl-card__supporting-text').text().trim()));
 
 }
 
@@ -40,3 +40,8 @@ function nl2br(str, is_xhtml) {
     return (str + '')
         .replace(/([^>\r\n]?)(\r\n|\n\r|\r|\n)/g, '$1' + breakTag + '$2');
 }
+
+$(document).ready(function () {
+    var m = $('.dayone-markdown');
+    m.html(marked(m.text()));
+});

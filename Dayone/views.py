@@ -9,6 +9,7 @@ from django.conf import settings
 import plistlib
 import utils
 import models_mongo as db
+import codecs
 
 
 def init_dayone_entries(request):
@@ -68,7 +69,8 @@ def search(request):
 
 
 def howto(request):
-    return render_to_response('howto.html')
+    with codecs.open(os.path.join(settings.BASE_DIR, 'readme.md'), encoding='utf-8') as f:
+        return render_to_response('howto.html', {'howto': f.read()})
 
 
 def all_days(request):

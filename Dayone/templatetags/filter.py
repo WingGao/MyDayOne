@@ -3,6 +3,7 @@ __author__ = 'wing'
 from django import template
 from Dayone.models_mongo import TAG_DAY_CN, TAG_DAY
 import datetime
+import markdown
 
 register = template.Library()
 
@@ -29,3 +30,7 @@ def tagurl(tname):
 @register.filter
 def cnweek(day):
     return '周' + ['一', '二', '三', '四', '五', '六', '日'][day]
+
+@register.filter
+def dayone_markdown(t):
+    return markdown.markdown(t)

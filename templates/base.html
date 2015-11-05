@@ -6,9 +6,10 @@
     <script src="/static/jquery-2.1.4.min.js"></script>
     <link rel="stylesheet" href="/static/material.min.css">
     <script src="/static/material.min.js"></script>
-    <link rel="stylesheet" href="/static/bootstrap.min.css">
+    <link rel="stylesheet" href="/static/bootstrap.css">
     <script src="/static/bootstrap.min.js"></script>
     <link rel="stylesheet" href="/static/style.css">
+    <script src="/static/marked.min.js"></script>
     <script src="/static/main.js"></script>
 </head>
 <body>
@@ -49,14 +50,12 @@
             <a class="mdl-navigation__link" href="/tag/all"><i class="mdl-color-text--blue-grey-400 material-icons"
                                                                role="presentation">local_offer</i>Tags</a>
             <a class="mdl-navigation__link" href="/day/all"><i class="mdl-color-text--blue-grey-400 material-icons"
-                                                       role="presentation">event_note</i>Days</a>
+                                                               role="presentation">event_note</i>Days</a>
             <a class="mdl-navigation__link" href="/howto"><i class="mdl-color-text--blue-grey-400 material-icons"
-                                                       role="presentation">info</i>How To</a>
+                                                             role="presentation">info</i>How To</a>
 
 
             <div class="mdl-layout-spacer"></div>
-            <a class="mdl-navigation__link" href=""><i class="mdl-color-text--blue-grey-400 material-icons"
-                                                       role="presentation">help_outline</i><span class="visuallyhidden">Help</span></a>
         </nav>
     </div>
     <main id="page-{% block page_id %}days{% endblock %}" class="mdl-layout__content">
@@ -69,9 +68,12 @@
     <div class="modal-dialog">
         <div class="modal-content">
             {% block modal %}{% endblock %}
-        </div><!-- /.modal-content -->
-    </div><!-- /.modal-dialog -->
-</div><!-- /.modal -->
+        </div>
+        <!-- /.modal-content -->
+    </div>
+    <!-- /.modal-dialog -->
+</div>
+<!-- /.modal -->
 
 </body>
 </html>
