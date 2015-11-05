@@ -18,6 +18,7 @@ from django.conf.urls import include, url
 
 urlpatterns = [
     # url(r'^admin/', include(admin.site.urls)),
+    url(r'^$', 'Dayone.views.index'),
     url(r'^init_dayone', 'Dayone.views.init_dayone_entries'),
     url(r'^entry/list', 'Dayone.views.all_entries'),
     url(r'^entry/search', 'Dayone.views.search'),
@@ -27,4 +28,5 @@ urlpatterns = [
     url(r'^tag/(.*?)$', 'Dayone.views.one_tag'),
     url(r'^day/all', 'Dayone.views.all_days'),
     url(r'^howto', 'Dayone.views.howto'),
+    url(r'^renew', 'Dayone.views.renew'),
 ]

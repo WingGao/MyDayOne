@@ -1,6 +1,6 @@
 # coding=utf-8
 from django.shortcuts import render_to_response
-from django.http import HttpResponse
+from django.http import HttpResponse, HttpResponseRedirect
 from http import JSONResponse
 from django.views import static
 import glob
@@ -77,5 +77,10 @@ def all_days(request):
     return render_to_response('days.html', {'days': db.get_days()})
 
 
+def renew(request):
+    init_dayone_entries(request)
+    return index(request)
+
+
 def index(request):
-    pass
+    return HttpResponseRedirect('/entry/list')
